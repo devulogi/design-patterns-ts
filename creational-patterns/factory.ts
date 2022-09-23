@@ -1,69 +1,71 @@
-interface IProduct {
-    name: string
-    getName: () => string
-    setName: (name: string) => void
+interface IPokemon {
+    name: string;
+    type: string;
+    attack(): void;
 }
 
-abstract class ConcreteProduct implements IProduct {
-    protected constructor(public name: string) {
-        this.name = name;
-    }
-    getName(): string {
-        return this.name;
-    }
-    setName(name: string): void {
-        this.name = name;
-    }
+abstract class Pokemon implements IPokemon {
+    protected constructor(public name: string, public type: string) { }
+    public abstract attack(): void;
 }
 
-interface IOptional {
-    productPrice?: number
-    setPrice?: (price: number) => void
-    getPrice?: () => number
-}
-
-export class ConcreteProductA extends ConcreteProduct {
-    private price: number = 0;
-    constructor(optional?: IOptional) {
-        super('ConcreteProductA');
-        if (optional?.productPrice) {
-            this.price = optional?.productPrice;
-        }
+class FirePokemon extends Pokemon {
+    constructor(name: string, type: string) {
+        super(name, type);
     }
-    getPrice(): number {
-        return this.price;
-    }
-    setPrice(price: number): void {
-        this.price = price;
+    attack() {
+        console.log("Fire attack");
     }
 }
 
-class ConcreteProductB extends ConcreteProduct {
-    constructor() {
-        super('ConcreteProductB');
+class WaterPokemon extends Pokemon {
+    constructor(name: string, type: string) {
+        super(name, type);
+    }
+    attack() {
+        console.log("Water attack");
     }
 }
 
-class ConcreteProductC extends ConcreteProduct {
-    constructor() {
-        super('ConcreteProductC');
+class GrassPokemon extends Pokemon {
+    constructor(name: string, type: string) {
+        super(name, type);
+    }
+    attack() {
+        console.log("Grass attack");
     }
 }
 
-export class Creator {
-    /**
-     * Factory method
-     * @param someProperty: string
-     * @param optional: IOptional
-     * @returns {IProduct}: IProduct
-     */
-    static createObject(someProperty: string, optional?: IOptional): IProduct {
-        if (someProperty === 'a') {
-            return new ConcreteProductA(optional);
-        } else if (someProperty === 'b') {
-            return new ConcreteProductB();
-        } else {
-            return new ConcreteProductC();
+class GhostPokemon extends Pokemon {
+    constructor(name: string, type: string) {
+        super(name, type);
+    }
+    attack() {
+        console.log("Ghost attack");
+    }
+}
+
+
+export enum PokemonType {
+    Fire = "fire",
+    Water = "water",
+    Grass = "grass",
+    Ghost = "ghost"
+}
+
+export class PokemonFactory {
+    static createPokemon(name: string, type: string): IPokemon {
+        switch (type) {
+            case PokemonType.Fire:
+                return new FirePokemon(name, type);
+            case PokemonType.Water:
+                return new WaterPokemon(name, type);
+            case PokemonType.Grass:
+                return new GrassPokemon(name, type);
+            case PokemonType.Ghost:
+                return new GhostPokemon(name, type);
+            default:
+                throw new Error("Invalid pokemon type");
         }
     }
 }

@@ -1,13 +1,11 @@
-import {Creator, ConcreteProductA} from "./creational-patterns/factory";
+import {PokemonFactory, PokemonType} from "./creational-patterns/factory";
 
-const productA = Creator.createObject('a');
-const productB = Creator.createObject('b');
-const productC = Creator.createObject('c');
+const charmander = PokemonFactory.createPokemon("Charmander", PokemonType.Fire);
+const squirtle = PokemonFactory.createPokemon("Squirtle", PokemonType.Water);
+const bulbasaur = PokemonFactory.createPokemon("Bulbasaur", PokemonType.Grass);
+const gengar = PokemonFactory.createPokemon("Gengar", PokemonType.Ghost);
 
-console.log(productA.getName());
-console.log(productB.getName());
-console.log(productC.getName());
-
-const productA1 = productA as ConcreteProductA;
-productA1.setPrice(200);
-console.log(productA1.getPrice());
+charmander.attack();
+squirtle.attack();
+bulbasaur.attack();
+gengar.attack();
