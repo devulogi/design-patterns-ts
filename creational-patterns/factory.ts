@@ -45,11 +45,22 @@ class GhostPokemon extends Pokemon {
     }
 }
 
+class NormalPokemon extends Pokemon {
+    constructor(name: string, type: string) {
+        super(name, type);
+    }
+
+    attack() {
+        console.log("Normal attack");
+    }
+}
+
 export enum PokemonType {
     Fire = "fire",
     Water = "water",
     Grass = "grass",
-    Ghost = "ghost"
+    Ghost = "ghost",
+    Normal = "normal"
 }
 
 export class PokemonFactory {
@@ -63,6 +74,7 @@ export class PokemonFactory {
                 return new GrassPokemon(name, type);
             case PokemonType.Ghost:
                 return new GhostPokemon(name, type);
+            case PokemonType.Normal:
             default:
                 throw new Error("Invalid pokemon type");
         }
