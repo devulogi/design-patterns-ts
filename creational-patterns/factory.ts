@@ -76,7 +76,7 @@ export class PokemonFactory {
                 return new GhostPokemon(name, type);
             case PokemonType.Normal:
             default:
-                throw new Error("Invalid pokemon type");
+                return new NormalPokemon(name, type);
         }
     }
 }
