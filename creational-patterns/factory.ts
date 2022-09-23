@@ -45,7 +45,6 @@ class GhostPokemon extends Pokemon {
     }
 }
 
-
 export enum PokemonType {
     Fire = "fire",
     Water = "water",
