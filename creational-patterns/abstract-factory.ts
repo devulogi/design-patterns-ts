@@ -113,13 +113,13 @@ class PokemonFactory {
     }
 }
 
-export class GymLeader extends Trainer implements ITrainerAbstractFactory {
+export class GymLeader extends Trainer {
     constructor(name: string) {
         super(name);
     }
 }
 
-export class PokemonTrainer extends Trainer implements ITrainerAbstractFactory {
+export class PokemonTrainer extends Trainer {
     constructor(name: string) {
         super(name);
     }
