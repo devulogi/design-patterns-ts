@@ -1,16 +1,16 @@
-import {PokemonType} from "./factory";
+import {PokemonType} from "../constants";
 
 interface IPokemon {
     attack(): void;
 }
 
 interface IAbstractPokemonFactory {
-    createFirePokemon(name: string): IPokemon;
-    createWaterPokemon(name: string): IPokemon;
+    createFirePokemon(name: string): Pokemon;
+    createWaterPokemon(name: string): Pokemon;
 }
 
 export abstract class Pokemon {
-    protected constructor(private _name: string, public _type: PokemonType) {
+    protected constructor(private _name: string, private _type: PokemonType) {
     }
     public getName(): string {
         return this._name;
@@ -39,10 +39,10 @@ export class WaterPokemon extends Pokemon implements IPokemon {
 }
 
 export class AbstractPokemonFactory implements IAbstractPokemonFactory {
-    createFirePokemon(name: string): IPokemon {
+    createFirePokemon(name: string): Pokemon {
         return new FirePokemon(name, PokemonType.Fire);
     }
-    createWaterPokemon(name: string): IPokemon {
+    createWaterPokemon(name: string): Pokemon {
         return new WaterPokemon(name, PokemonType.Water);
     }
 }

@@ -1,4 +1,6 @@
-interface IPokemon {
+import {PokemonType} from "../constants";
+
+export interface IPokemon {
     name: string;
     type: string;
     attack(): void;
@@ -52,14 +54,6 @@ class NormalPokemon extends Pokemon {
     attack() {
         console.log("Normal attack");
     }
-}
-
-export enum PokemonType {
-    Fire = "fire",
-    Water = "water",
-    Grass = "grass",
-    Ghost = "ghost",
-    Normal = "normal"
 }
 
 export class PokemonFactory {

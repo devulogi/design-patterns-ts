@@ -1,6 +1,8 @@
 import {describe, expect, test} from '@jest/globals';
-import {PokemonFactory, PokemonType} from "./creational-patterns/factory";
-import {AbstractPokemonFactory, FirePokemon, WaterPokemon} from "./creational-patterns/abstract-factory";
+
+import {PokemonType} from "./constants";
+import {PokemonFactory} from "./creational-patterns/factory";
+import {AbstractPokemonFactory} from "./creational-patterns/abstract-factory";
 
 describe('Factory', () => {
     test('should create a fire pokemon', () => {
@@ -27,11 +29,11 @@ describe('Factory', () => {
 
 describe('Abstract Factory', () => {
     test('should create a fire pokemon', () => {
-        const charmander = new AbstractPokemonFactory().createFirePokemon('Charmander') as FirePokemon;
+        const charmander = new AbstractPokemonFactory().createFirePokemon('Charmander');
         expect(charmander.getType()).toBe(PokemonType.Fire);
     });
     test('should create a water pokemon', () => {
-        const squirtle = new AbstractPokemonFactory().createWaterPokemon('Squirtle') as WaterPokemon;
+        const squirtle = new AbstractPokemonFactory().createWaterPokemon('Squirtle');
         expect(squirtle.getType()).toBe(PokemonType.Water);
     });
 });
