@@ -60,7 +60,7 @@ class NormalPokemon extends Pokemon implements IPokemon {
 }
 
 export class PokemonFactory {
-    static createPokemon(name: string, type: string): Pokemon {
+    static createPokemon(type: string): Pokemon {
         switch (type) {
             case PokemonType.Fire:
                 return new FirePokemon();
