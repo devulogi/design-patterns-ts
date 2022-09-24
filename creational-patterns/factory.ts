@@ -1,55 +1,58 @@
 import {PokemonType} from "../constants";
 
 export interface IPokemon {
-    name: string;
-    type: string;
     attack(): void;
 }
 
-abstract class Pokemon implements IPokemon {
-    protected constructor(public name: string, public type: string) { }
-    public abstract attack(): void;
+abstract class Pokemon {
+    protected constructor(private _name: string, private _type: string) { }
+    get name(): string {
+        return this._name;
+    }
+    get type(): string {
+        return this._type;
+    }
 }
 
-class FirePokemon extends Pokemon {
-    constructor(name: string, type: string) {
-        super(name, type);
+class FirePokemon extends Pokemon implements IPokemon {
+    constructor() {
+        super("Charmander", PokemonType.Fire);
     }
     attack() {
         console.log("Fire attack");
     }
 }
 
-class WaterPokemon extends Pokemon {
-    constructor(name: string, type: string) {
-        super(name, type);
+class WaterPokemon extends Pokemon implements IPokemon {
+    constructor() {
+        super("Squirtle", PokemonType.Water);
     }
     attack() {
         console.log("Water attack");
     }
 }
 
-class GrassPokemon extends Pokemon {
-    constructor(name: string, type: string) {
-        super(name, type);
+class GrassPokemon extends Pokemon implements IPokemon {
+    constructor() {
+        super("Bulbasaur", PokemonType.Grass);
     }
     attack() {
         console.log("Grass attack");
     }
 }
 
-class GhostPokemon extends Pokemon {
-    constructor(name: string, type: string) {
-        super(name, type);
+class GhostPokemon extends Pokemon implements IPokemon {
+    constructor() {
+        super("Gengar", PokemonType.Ghost);
     }
     attack() {
         console.log("Ghost attack");
     }
 }
 
-class NormalPokemon extends Pokemon {
-    constructor(name: string, type: string) {
-        super(name, type);
+class NormalPokemon extends Pokemon implements IPokemon {
+    constructor() {
+        super("Togepi", PokemonType.Normal);
     }
     attack() {
         console.log("Normal attack");
@@ -57,19 +60,19 @@ class NormalPokemon extends Pokemon {
 }
 
 export class PokemonFactory {
-    static createPokemon(name: string, type: string): IPokemon {
+    static createPokemon(name: string, type: string): Pokemon {
         switch (type) {
             case PokemonType.Fire:
-                return new FirePokemon(name, type);
+                return new FirePokemon();
             case PokemonType.Water:
-                return new WaterPokemon(name, type);
+                return new WaterPokemon();
             case PokemonType.Grass:
-                return new GrassPokemon(name, type);
+                return new GrassPokemon();
             case PokemonType.Ghost:
-                return new GhostPokemon(name, type);
+                return new GhostPokemon();
             case PokemonType.Normal:
             default:
-                return new NormalPokemon(name, type);
+                return new NormalPokemon();
         }
     }
 }
