@@ -4,45 +4,134 @@ interface IPokemon {
     attack(): void;
 }
 
-interface IAbstractPokemonFactory {
-    createFirePokemon(name: string): Pokemon;
-    createWaterPokemon(name: string): Pokemon;
+interface IAbstractTrainerFactory {
+    createPokemon1?: (type: PokemonType) => void;
+    createPokemon2?: (type: PokemonType) => void;
+}
+
+abstract class Trainer implements IAbstractTrainerFactory {
+    private _pokemons: Pokemon[] = [];
+
+    protected constructor(private _name: string) {
+    }
+
+    public getName(): string {
+        return this._name;
+    }
+
+    public createPokemon1(type: PokemonType): void {
+        this._pokemons.push(PokemonFactory.createPokemon(type));
+    }
+
+    public createPokemon2(type: PokemonType): void {
+        this._pokemons.push(PokemonFactory.createPokemon(type));
+    }
+
+    public getPokemons(): Pokemon[] {
+        return this._pokemons;
+    }
 }
 
 export abstract class Pokemon {
     protected constructor(private _name: string, private _type: PokemonType) {
     }
+
     public getName(): string {
         return this._name;
     }
+
     public getType(): PokemonType {
         return this._type;
     }
 }
 
-export class FirePokemon extends Pokemon implements IPokemon {
-    constructor(name: string, type: PokemonType) {
-        super(name, type);
+class FirePokemon extends Pokemon implements IPokemon {
+    constructor(name: string) {
+        super(name, PokemonType.Fire);
     }
+
     attack() {
         console.log("Fire attack");
     }
 }
 
-export class WaterPokemon extends Pokemon implements IPokemon {
-    constructor(name: string, type: PokemonType) {
-        super(name, type);
+class WaterPokemon extends Pokemon implements IPokemon {
+    constructor(name: string) {
+        super(name, PokemonType.Water);
     }
+
     attack() {
         console.log("Water attack");
     }
 }
 
-export class AbstractPokemonFactory implements IAbstractPokemonFactory {
-    createFirePokemon(name: string): Pokemon {
-        return new FirePokemon(name, PokemonType.Fire);
+class GrassPokemon extends Pokemon implements IPokemon {
+    constructor(name: string) {
+        super(name, PokemonType.Grass);
     }
-    createWaterPokemon(name: string): Pokemon {
-        return new WaterPokemon(name, PokemonType.Water);
+
+    attack() {
+        console.log("Grass attack");
     }
+}
+
+class ElectricPokemon extends Pokemon implements IPokemon {
+    constructor(name: string) {
+        super(name, PokemonType.Electric);
+    }
+
+    attack() {
+        console.log("Electric attack");
+    }
+}
+
+class NormalPokemon extends Pokemon implements IPokemon {
+    constructor(name: string) {
+        super(name, PokemonType.Normal);
+    }
+
+    attack() {
+        console.log("Normal attack");
+    }
+}
+
+class PokemonFactory {
+    public static createPokemon(type: PokemonType): Pokemon {
+        switch (type) {
+            case PokemonType.Fire:
+                return new FirePokemon("Charmander");
+            case PokemonType.Water:
+                return new WaterPokemon("Squirtle");
+            case PokemonType.Grass:
+                return new GrassPokemon("Bulbasaur");
+            case PokemonType.Electric:
+                return new ElectricPokemon("Pikachu");
+            case PokemonType.Normal:
+            default:
+                return new NormalPokemon("Togepi");
+        }
+    }
+}
+
+export class GymLeader extends Trainer implements IAbstractTrainerFactory {
+    constructor(name: string) {
+        super(name);
+    }
+}
+
+export class PokemonTrainer extends Trainer implements IAbstractTrainerFactory {
+    constructor(name: string) {
+        super(name);
+    }
+}
+
+export function clientCode(factory: IAbstractTrainerFactory): Trainer {
+    if (factory instanceof GymLeader) {
+        factory.createPokemon1(PokemonType.Fire);
+        factory.createPokemon2(PokemonType.Water);
+    } else {
+        factory.createPokemon1(PokemonType.Grass);
+        factory.createPokemon2(PokemonType.Electric);
+    }
+    return <Trainer>factory;
 }
