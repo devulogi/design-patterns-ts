@@ -5,8 +5,8 @@ interface IPokemon {
 }
 
 interface ITrainerAbstractFactory {
-    createPokemon1?: (type: PokemonType) => void;
-    createPokemon2?: (type: PokemonType) => void;
+    createPokemon1(type: PokemonType): void;
+    createPokemon2(type: PokemonType): void;
 }
 
 abstract class Trainer implements ITrainerAbstractFactory {
