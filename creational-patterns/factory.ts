@@ -49,7 +49,6 @@ class NormalPokemon extends Pokemon {
     constructor(name: string, type: string) {
         super(name, type);
     }
-
     attack() {
         console.log("Normal attack");
     }
