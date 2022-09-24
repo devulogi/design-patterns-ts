@@ -4,12 +4,12 @@ interface IPokemon {
     attack(): void;
 }
 
-interface IAbstractTrainerFactory {
+interface ITrainerAbstractFactory {
     createPokemon1?: (type: PokemonType) => void;
     createPokemon2?: (type: PokemonType) => void;
 }
 
-abstract class Trainer implements IAbstractTrainerFactory {
+abstract class Trainer implements ITrainerAbstractFactory {
     private _pokemons: Pokemon[] = [];
 
     protected constructor(private _name: string) {
@@ -113,19 +113,19 @@ class PokemonFactory {
     }
 }
 
-export class GymLeader extends Trainer implements IAbstractTrainerFactory {
+export class GymLeader extends Trainer implements ITrainerAbstractFactory {
     constructor(name: string) {
         super(name);
     }
 }
 
-export class PokemonTrainer extends Trainer implements IAbstractTrainerFactory {
+export class PokemonTrainer extends Trainer implements ITrainerAbstractFactory {
     constructor(name: string) {
         super(name);
     }
 }
 
-export function clientCode(factory: IAbstractTrainerFactory): Trainer {
+export function clientCode(factory: ITrainerAbstractFactory): Trainer {
     if (factory instanceof GymLeader) {
         factory.createPokemon1(PokemonType.Fire);
         factory.createPokemon2(PokemonType.Water);
