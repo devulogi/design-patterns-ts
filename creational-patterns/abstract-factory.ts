@@ -1,8 +1,6 @@
 import {PokemonType} from "./factory";
 
 interface IPokemon {
-    name: string;
-    type: string;
     attack(): void;
 }
 
@@ -11,15 +9,30 @@ interface IAbstractPokemonFactory {
     createWaterPokemon(name: string): IPokemon;
 }
 
-class FirePokemon implements IPokemon {
-    constructor(public name: string, public type: string) { }
+export abstract class Pokemon {
+    protected constructor(private _name: string, public _type: PokemonType) {
+    }
+    public getName(): string {
+        return this._name;
+    }
+    public getType(): PokemonType {
+        return this._type;
+    }
+}
+
+export class FirePokemon extends Pokemon implements IPokemon {
+    constructor(name: string, type: PokemonType) {
+        super(name, type);
+    }
     attack() {
         console.log("Fire attack");
     }
 }
 
-class WaterPokemon implements IPokemon {
-    constructor(public name: string, public type: string) { }
+export class WaterPokemon extends Pokemon implements IPokemon {
+    constructor(name: string, type: PokemonType) {
+        super(name, type);
+    }
     attack() {
         console.log("Water attack");
     }
