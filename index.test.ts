@@ -29,8 +29,9 @@ describe('Abstract Factory', () => {
     });
 
     test('should create a fire pokemon & name is Charmander', () => {
-        const pokemon = gymLeader.getPokemons()[0]
+        const pokemon = gymLeader.getPokemons()[0];
         expect(pokemon.getName()).toBe('Charmander');
+        expect(pokemon.getType()).toBe(PokemonType.Fire);
     });
 
     test('should create a trainer with 2 pokemons', () => {

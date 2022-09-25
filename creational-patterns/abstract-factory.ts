@@ -32,9 +32,11 @@ abstract class Trainer implements ITrainerAbstractFactory {
     }
 }
 
-abstract class Pokemon {
+abstract class Pokemon implements IPokemon {
     protected constructor(private _name: string, private _type: PokemonType) {
     }
+
+    abstract attack(): void;
 
     public getName(): string {
         return this._name;
@@ -45,7 +47,7 @@ abstract class Pokemon {
     }
 }
 
-class FirePokemon extends Pokemon implements IPokemon {
+class FirePokemon extends Pokemon {
     constructor(name: string) {
         super(name, PokemonType.Fire);
     }
@@ -55,7 +57,7 @@ class FirePokemon extends Pokemon implements IPokemon {
     }
 }
 
-class WaterPokemon extends Pokemon implements IPokemon {
+class WaterPokemon extends Pokemon {
     constructor(name: string) {
         super(name, PokemonType.Water);
     }
@@ -65,7 +67,7 @@ class WaterPokemon extends Pokemon implements IPokemon {
     }
 }
 
-class GrassPokemon extends Pokemon implements IPokemon {
+class GrassPokemon extends Pokemon {
     constructor(name: string) {
         super(name, PokemonType.Grass);
     }
@@ -75,7 +77,7 @@ class GrassPokemon extends Pokemon implements IPokemon {
     }
 }
 
-class ElectricPokemon extends Pokemon implements IPokemon {
+class ElectricPokemon extends Pokemon {
     constructor(name: string) {
         super(name, PokemonType.Electric);
     }
@@ -85,7 +87,7 @@ class ElectricPokemon extends Pokemon implements IPokemon {
     }
 }
 
-class NormalPokemon extends Pokemon implements IPokemon {
+class NormalPokemon extends Pokemon {
     constructor(name: string) {
         super(name, PokemonType.Normal);
     }
