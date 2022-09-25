@@ -2,7 +2,7 @@ import {describe, expect, test} from '@jest/globals';
 
 import {PokemonType} from "./constants";
 import {PokemonFactory} from "./creational-patterns/factory";
-import {clientCode, GymLeader, PokemonTrainer, Pokemon} from "./creational-patterns/abstract-factory";
+import {clientCode, GymLeader, PokemonTrainer} from "./creational-patterns/abstract-factory";
 
 describe('Factory', () => {
     xtest('should create a fire pokemon & name is Charmander', () => {
@@ -18,16 +18,26 @@ describe('Factory', () => {
 });
 
 describe('Abstract Factory', () => {
-    test('should create a gym leader', () => {
-        const gymLeader = new GymLeader('Gary');
-        clientCode(gymLeader);
-        expect(gymLeader.getName()).toBe('Gary');
+    const gymLeader = new GymLeader('Gary');
+    clientCode(gymLeader);
+
+    const pokemonTrainer = new PokemonTrainer('Ash');
+    clientCode(pokemonTrainer);
+
+    test('should create a gym leader & name is Gary', () => {
+       expect(gymLeader.getName()).toBe('Gary');
     });
-    test('should create a pokemon and check if pokemon is instance of Pokemon', () => {
-        const pokemonTrainer = new PokemonTrainer('Ash');
-        clientCode(pokemonTrainer);
-        pokemonTrainer.getPokemons().forEach(pokemon => {
-            expect(pokemon).toBeInstanceOf(Pokemon);
-        });
+
+    test('should create a fire pokemon & name is Charmander', () => {
+        const pokemon = gymLeader.getPokemons()[0]
+        expect(pokemon.getName()).toBe('Charmander');
+    });
+
+    test('should create a trainer with 2 pokemons', () => {
+        expect(pokemonTrainer.getPokemons().length).toBe(2);
+    });
+
+    test('should create an electric pokemon & name is Pikachu', () => {
+       expect(pokemonTrainer.getPokemons()[1].getName()).toBe('Pikachu');
     });
 });
