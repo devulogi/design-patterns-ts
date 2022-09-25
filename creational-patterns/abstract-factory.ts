@@ -32,7 +32,7 @@ abstract class Trainer implements ITrainerAbstractFactory {
     }
 }
 
-export abstract class Pokemon {
+abstract class Pokemon {
     protected constructor(private _name: string, private _type: PokemonType) {
     }
 
