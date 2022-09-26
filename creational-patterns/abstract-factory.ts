@@ -135,6 +135,9 @@ export class PokemonTrainer extends Trainer {
  * @return Trainer {GymLeader | PokemonTrainer}
  */
 export function clientCode(factory: ITrainerAbstractFactory): Trainer {
+    /**
+     * The client code can work with any concrete factory class.
+     */
     if (factory instanceof GymLeader) {
         factory.createPokemon1(PokemonType.Fire);
         factory.createPokemon2(PokemonType.Water);
