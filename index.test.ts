@@ -4,20 +4,20 @@ import {PokemonType} from "./constants";
 import {PokemonFactory} from "./creational-patterns/factory";
 import {clientCode, GymLeader, PokemonTrainer} from "./creational-patterns/abstract-factory";
 
-describe('Factory', () => {
-    xtest('should create a fire pokemon & name is Charmander', () => {
+xdescribe('Factory', () => {
+    test('should create a fire pokemon & name is Charmander', () => {
         const pokemon = PokemonFactory.createPokemon(PokemonType.Fire);
         expect(pokemon.type).toBe(PokemonType.Fire);
         expect(pokemon.name).toBe('Charmander');
     });
-    xtest('should create a normal pokemon & name is Togepi', () => {
+    test('should create a normal pokemon & name is Togepi', () => {
         const pokemon = PokemonFactory.createPokemon(PokemonType.Normal);
         expect(pokemon.type).toBe(PokemonType.Normal);
         expect(pokemon.name).toBe('Togepi');
     });
 });
 
-describe('Abstract Factory', () => {
+xdescribe('Abstract Factory', () => {
     const gymLeader = new GymLeader('Gary');
     clientCode(gymLeader);
 
