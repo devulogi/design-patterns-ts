@@ -68,6 +68,11 @@ class NormalPokemon extends Pokemon implements IPokemon {
 }
 
 export class PokemonFactory {
+    /**
+     * Factory method to create a pokemon based on the type of pokemon passed in as a parameter to the method.
+     * The method will return a pokemon of the type passed in as a parameter.
+     * @param type {PokemonType} The type of pokemon to create.
+     */
     static createPokemon(type: string): Pokemon {
         switch (type) {
             case PokemonType.Fire:
