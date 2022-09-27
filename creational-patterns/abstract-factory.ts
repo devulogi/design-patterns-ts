@@ -129,15 +129,14 @@ export class PokemonTrainer extends Trainer {
 
 /**
  * The client code works with factories only through abstract
- * types: AbstractFactory. This lets you pass any factory or
- * IPokemon subclass to the client code without breaking it.
+ * types: AbstractFactory. It works with IPokemon objects only through the common interface IPokemon.
+ * This approach lets you introduce new types of IPokemon into the program without breaking the existing client code.
+ * You just need to extend the AbstractFactory class and implement the required methods.
+ * The client code will work with the new factory class without any changes.
  * @param factory {ITrainerAbstractFactory}
  * @return Trainer {GymLeader | PokemonTrainer}
  */
 export function clientCode(factory: ITrainerAbstractFactory): Trainer {
-    /**
-     * The client code can work with any concrete factory class.
-     */
     if (factory instanceof GymLeader) {
         factory.createPokemon1(PokemonType.Fire);
         factory.createPokemon2(PokemonType.Water);
