@@ -26,7 +26,8 @@ interface IBuilder {
 
 /**
  * The Concrete Builder classes follow the Builder interface and provide
- * specific implementations of the building steps.
+ * specific implementations of the building steps. Your program may have
+ * several variations of Builders, implemented differently.
  * The Builder design pattern allows you to produce different types and
  * representations of an object using the same construction code.
  */
