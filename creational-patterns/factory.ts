@@ -5,6 +5,11 @@ export interface IPokemon {
 }
 
 abstract class Pokemon {
+    /**
+     * @param _name {string}
+     * @param _type {string}
+     * @protected constructor is used to prevent the class from being instantiated outside the class.
+     */
     protected constructor(private _name: string, private _type: string) {
     }
 
@@ -18,6 +23,9 @@ abstract class Pokemon {
 }
 
 class FirePokemon extends Pokemon implements IPokemon {
+    /**
+     * @returns {FirePokemon}
+     */
     constructor() {
         super("Charmander", PokemonType.Fire);
     }

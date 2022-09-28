@@ -48,6 +48,10 @@ abstract class Pokemon implements IPokemon {
 }
 
 class FirePokemon extends Pokemon {
+    /**
+     * @param name {string}
+     * @returns {FirePokemon}
+     */
     constructor(name: string) {
         super(name, PokemonType.Fire);
     }
@@ -58,6 +62,10 @@ class FirePokemon extends Pokemon {
 }
 
 class WaterPokemon extends Pokemon {
+    /**
+     * @param name {string}
+     * @returns {WaterPokemon}
+     */
     constructor(name: string) {
         super(name, PokemonType.Water);
     }
@@ -68,6 +76,10 @@ class WaterPokemon extends Pokemon {
 }
 
 class GrassPokemon extends Pokemon {
+    /**
+     * @param name {string}
+     * @returns {GrassPokemon}
+     */
     constructor(name: string) {
         super(name, PokemonType.Grass);
     }
@@ -78,6 +90,10 @@ class GrassPokemon extends Pokemon {
 }
 
 class ElectricPokemon extends Pokemon {
+    /**
+     * @param name {string}
+     * @returns {ElectricPokemon}
+     */
     constructor(name: string) {
         super(name, PokemonType.Electric);
     }
@@ -88,6 +104,10 @@ class ElectricPokemon extends Pokemon {
 }
 
 class NormalPokemon extends Pokemon {
+    /**
+     * @param name {string}
+     * @returns {NormalPokemon}
+     */
     constructor(name: string) {
         super(name, PokemonType.Normal);
     }
@@ -116,12 +136,14 @@ class PokemonFactory {
 }
 
 export class GymLeader extends Trainer {
+    /** @returns {GymLeader} */
     constructor(name: string) {
         super(name);
     }
 }
 
 export class PokemonTrainer extends Trainer {
+    /** @returns {PokemonTrainer} */
     constructor(name: string) {
         super(name);
     }
