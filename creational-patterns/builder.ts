@@ -71,6 +71,3 @@ class Director {
      */
     static construct = (builder: IBuilder): Product => builder.buildPartA().buildPartB().buildPartC().getResult();
 }
-
-const builder = new Builder();
-const product = Director.construct(builder);
