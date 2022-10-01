@@ -3,8 +3,9 @@ import {describe, expect, test} from '@jest/globals';
 import {PokemonType} from "./constants";
 import {PokemonFactory} from "./creational-patterns/factory";
 import {clientCode, GymLeader, PokemonTrainer} from "./creational-patterns/abstract-factory";
+import {Singleton as Captain} from "./creational-patterns/singleton";
 
-xdescribe('Factory', () => {
+describe('Factory', () => {
     test('should create a fire pokemon & name is Charmander', () => {
         const pokemon = PokemonFactory.createPokemon(PokemonType.Fire);
         expect(pokemon.type).toBe(PokemonType.Fire);
@@ -17,7 +18,7 @@ xdescribe('Factory', () => {
     });
 });
 
-xdescribe('Abstract Factory', () => {
+describe('Abstract Factory', () => {
     const gymLeader = new GymLeader('Gary');
     clientCode(gymLeader);
 
@@ -40,5 +41,20 @@ xdescribe('Abstract Factory', () => {
 
     test('should create an electric pokemon & name is Pikachu', () => {
        expect(pokemonTrainer.getPokemons()[1].getName()).toBe('Pikachu');
+    });
+});
+
+describe('Singleton', () => {
+    const captain1 = Captain.getCaptain(null);
+    const captain2 = Captain.getCaptain("cassy ");
+
+    test('should return the same captain', () => {
+        expect(Captain.isCaptain(captain1)).toBe(true);
+        expect(Captain.isCaptain(captain2)).toBe(true);
+    });
+
+    test('should return the same captain', () => {
+        captain1.setName('Captain1');
+        expect(captain2.getName()).toBe(captain1.getName());
     });
 });
