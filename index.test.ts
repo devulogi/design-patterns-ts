@@ -53,8 +53,12 @@ describe('Singleton', () => {
         expect(Captain.isCaptain(captain2)).toBe(true);
     });
 
-    test('should return the same captain', () => {
+    test('should return the same captain name', () => {
         captain1.setName('Captain1');
         expect(captain2.getName()).toBe(captain1.getName());
+    });
+
+    test('should return the same captain', () => {
+        expect(captain2).toEqual(captain1);
     });
 });
